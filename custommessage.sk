@@ -1,0 +1,182 @@
+# [EN] You can modify the script as you wish
+# [FR] Vous pouvez modifier le skript à votre guise
+
+
+#   _____            _ _        _       _             
+#  / ____|          (_) |      (_)     | |            
+#  | (___  _ __  _ __ _| |_ __ _ _    __| | _____   __ 
+#  \___ \| '_ \| '__| | __/ _` | |  / _` |/ _ \ \ / / 
+#  ____) | |_) | |  | | || (_| | | | (_| |  __/\ V /  
+# |_____/| .__/|_|  |_|\__\__,_|_|  \__,_|\___| \_/   
+#        | |                                          
+#        |_|                                          
+
+
+
+
+
+variables:
+	{custommessage.%player%} = "Hello everyone"
+	{customquitmessage.%player%} = "Bye"
+	
+
+on first join:
+	set join message to ""
+	
+
+on join:
+	set join message to ""
+	set {_P} to colored player's prefix
+	set {_N} to player's display name
+	set {_S} to colored player's suffix
+	broadcast "%{_P}%%{_N}%%{_S}% &ejoined the game &7: &6%{custommessage.%player%}%"
+	
+	
+on quit:
+	set quit message to ""
+	set {_P} to colored player's prefix
+	set {_N} to player's display name
+	set {_S} to colored player's suffix
+	broadcast "%{_P}%%{_N}%%{_S}% &equit the game &7: &6%{customquitmessage.%player%}%"
+
+
+
+command /sendmycustomjoinmessage:
+	trigger:
+		set {_P} to colored player's prefix
+		set {_N} to player's display name
+		set {_S} to colored player's suffix
+		send "%{_P}%%{_N}%%{_S}% &ejoined the game &7: &6%{custommessage.%player%}%" to player
+		
+command /sendmycustomquitmessage:
+	trigger:
+		set {_P} to colored player's prefix
+		set {_N} to player's display name
+		set {_S} to colored player's suffix
+		send "%{_P}%%{_N}%%{_S}% &equit the game &7: &6%{customquitmessage.%player%}%" to player
+		
+		
+command /resetmycustommessage:
+	trigger:
+		set {custommessage.%player%} to "Hello everyone"
+		
+	
+   
+command /customjoinmessagegui:
+	permission: custommessage.gui.use
+	trigger:
+		wait 1 tick
+		open chest with 3 row named "&6Custom Join Message - Settings" to player
+		wait 1 tick
+		format slot 0 of player with bamboo named "&6Hello my name is %player%" with lore "" to close then run [JoinMessage1(player)]
+		format slot 1 of player with bamboo named "&6Hey everyone !!" with lore "" to close then run [JoinMessage1(player)]
+		format slot 2 of player with bamboo named "&6Hola my name is %player% !!" with lore "" to close then run [JoinMessage3(player)]
+		format slot 3 of player with bamboo named "&6Yeahh !!" with lore "" to close then run [JoinMessage4(player)]
+		format slot 4 of player with bamboo named "&6Such a beautiful weather today" with lore "" to close then run [JoinMessage5(player)]
+		format slot 5 of player with bamboo named "&6I love this server so much!!" with lore "" to close then run [JoinMessage6(player)]
+		format slot 26 of player with sea pickle named "&6%player%" with lore "Your message : %{custommessage.%player%}%" to close
+		format slot 25 of player with redstone torch named "&6Send My Custom Join Message" with lore "" to close then run [make player execute command "/sendmycustomjoinmessage"]
+		
+
+command /customquitmessagegui:
+	permission: custommessage.gui.use
+	trigger:
+		wait 1 tick
+		open chest with 3 row named "&6Custom Quit Message - Settings" to player
+		wait 1 tick
+		format slot 0 of player with bamboo named "&6%player% say Bye everyone" with lore "" to close then run [QuitMessage1(player)]
+		format slot 1 of player with bamboo named "&6Hey everyone !!" with lore "" to close then run [QuitMessage2(player)]
+		format slot 2 of player with bamboo named "&6Hola my name is %player% !!" with lore "" to close then run [QuitMessage3(player)]
+		format slot 3 of player with bamboo named "&6Yeahh !!" with lore "" to close then run [QuitMessage4(player)]
+		format slot 4 of player with bamboo named "&6Such a beautiful weather today" with lore "" to close then run [QuitMessage5(player)]
+		format slot 5 of player with bamboo named "&6I love this server so much!!" with lore "" to close then run [QuitMessage6(player)]
+		format slot 26 of player with sea pickle named "&6%player%" with lore "Your message : %{customquitmessage.%player%}%" to close
+		format slot 25 of player with redstone torch named "&6Send My Custom Join Message" with lore "" to close then run [make player execute command "/sendmycustomquitmessage"]
+		
+
+# Just add functions for each custom message
+
+function JoinMessage1(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6Hello my name is %{_p}%"
+	
+function JoinMessage2(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6Hey everyone !!"
+	
+function JoinMessage3(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6Hola my name is %{_p}% !!"
+
+function JoinMessage4(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6Yeahh !!"
+	
+function JoinMessage5(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+	
+function JoinMessage6(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+	
+function JoinMessage7(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+
+function JoinMessage8(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+	
+function JoinMessage9(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+	
+function JoinMessage10(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+	
+function JoinMessage11(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+
+function JoinMessage12(p: player):
+	send "&cMessage changed !" to {_p}
+	set {custommessage.%{_p}%} to "&6A modif"
+
+
+
+# Custom Quit Message
+
+function QuitMessage1(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6%{_p}% say Bye everyone"
+	
+function QuitMessage2(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
+	
+function QuitMessage3(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
+	
+	
+function QuitMessage4(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
+	
+function QuitMessage5(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
+	
+function QuitMessage6(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
+	
+function QuitMessage7(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
+	
+function QuitMessage8(p: player):
+	send "&cMessage changed !" to {_p}
+	set {customquitmessage.%{_p}%} to "&6A modif"
