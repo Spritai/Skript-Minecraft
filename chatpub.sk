@@ -1,0 +1,13 @@
+command /pubdiscord <text>:
+    permission: pubdiscord.use
+    trigger:
+        if arg-1 is not set:
+            send "&c Tu n'as pas set la pub discord" to sender
+        else:
+            set {liendiscord} to arg-1
+            send "&a Tu as bien set le lien discord" to sender
+
+
+command /discord:
+    trigger:
+        send "&8Voici le lien de notre discord: &a%{liendiscord}%"
