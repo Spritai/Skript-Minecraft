@@ -1,0 +1,70 @@
+on npc left click:
+    if target entity's name is "&6Barques":
+        wait 1 tick
+        open chest with 1 row named "&6Vendeur de barque" to player
+        wait 1 tick
+        format slot 2 of player with oak boat named "&cBarque en bois de chaine" with lore "&7100 &6Livre Parisis" to close then run [BuyOakBoat(player)]
+
+
+
+function SortirBateauChaine(p: player, t: entity type):
+    if {oakboat.%{_p}%} is 1:
+        send "&aBarque sortie avec succès" to {_p}
+        spawn 1 of {_t} at {spawnboatlocation}
+        wait 5 seconds
+        send "" to {_p}
+        create an explosion of force 5 at {_p}
+    if {oakboat.%{_p}%} is 0:
+        send "Tu n'as pas acheté de barque en chaine" to {_p}
+    
+
+
+on npc left click:
+    if target entity's name is "&cSortir":
+        wait 1 tick
+        open chest with 1 row named "&6Sortir son bateau" to player
+        wait 1 tick
+        format slot 0 of player with oak boat named "&cSortir bateau en chaine" to close then run [SortirBateauChaine(player, spruce boat)]
+        format slot 8 of player with lead named "&cRetour" to close
+
+
+
+function BuyOakBoat(p: player):
+    if {oakboat.%{_p}%} is 1:
+        send "&cTu as déja un bateau" to {_p}
+    if {oakboat.%{_p}%} is 0:
+        set {oakboat.%{_p}%} to 1
+        remove 100 from {money.%{_p}%}
+        send "&aTu as acheté un bateau en bois de chaine" to {_p}
+        scoreboard({_p})
+
+
+function BuyBirchBoat(p: player):
+    set {birchboat} to 1
+    remove 100 from {money.%{_p}%}
+    send "&aTu as acheté un bateau en bois de boulot" to {_p}
+    scoreboard({_p})
+
+
+
+
+command /boat:
+    trigger:
+        if {oakboat.%player%} is 1:
+            send "voila" to player
+        else:
+            send "nn" to player
+
+
+command /resetboat:
+    permission: admin.resetboat
+    aliases: rb
+    trigger:
+        set {oakboat.%player%} to 0
+        set {birchboat.%player%} to 0
+
+
+command /setspawnboat:
+    permission: admin.setspawnboat
+    trigger:
+        set {spawnboatlocation} to player's location
