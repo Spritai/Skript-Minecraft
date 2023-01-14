@@ -1,0 +1,5 @@
+command /msg <player> <text>:
+    usage: /msg <player> <message>
+    trigger:
+        send "&8[&cBOITE-MAIL&8] &aVous avez envoyé &c%arg-2% &aà &c%arg-1%" to player
+        send "&8[&cBOITE-MAIL&8] &c%player% &avous a envoyé &c%arg-2%" to arg-1
