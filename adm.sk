@@ -1,0 +1,14 @@
+command /adm:
+    permission: use.adm
+    trigger:
+        send "&6Ouverture du menu staff ..." to player
+        OpenMenuAdm(player)
+
+
+function OpenMenuAdm(p: player):
+    wait a tick
+    open chest with 3 row named "&l&cMenu - STAFF" to {_p}
+    format slot 11 of {_p} with barrier named "&cSanction" to close then run ""
+    format slot 13 of {_p} with spyglass named "&cListe de joueurs" to close then run ""
+    format slot 15 of {_p} with barrier named "&cSanction" to close then run ""
+
